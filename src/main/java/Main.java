@@ -18,6 +18,19 @@ public class Main {
         get("/dogs", (req, res)->{
             return new Gson().toJson(dogSql2o.getAllDogs());
         });
+        /*get("/dogs", (req, res)->{
+            int limit = 10;
+            if ( req.queryParams("limit")!= null){
+                limit = Integer.valueOf(req.queryParams("limit"));
+            }
+
+            int offset = 0;
+            if(req.queryParams("offset")!=null){
+                offset = Integer.valueOf(req.queryParams("offset"));
+            }
+
+            return new Gson().toJson(dogSql2o.getAllDogsPaginated(limit, offset));
+        });*/
         post("/dogs", (req, res)->{
             Dog dog = new Gson().fromJson(req.body(), Dog.class);
             int result = dogSql2o.createDog(dog);
