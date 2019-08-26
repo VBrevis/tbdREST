@@ -13,17 +13,17 @@ public class DogSql2o {
     }
 
     public List<Dog> getAllDogs(){
-        try(Connection conn = sql2o.beginTransaction()){
-            return conn.createQuery("select * from dog")
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("select * from dogs")
                     .executeAndFetch(Dog.class);
         }
     }
 
     public int createDog(Dog dog){
         try(Connection conn = sql2o.open()){
-            int newId = conn.createQuery("insert into DOG(name) values (:name)")
+            int newId = conn.createQuery("insert into DOGS(name) values (:name)")
                     .addParameter("name", dog.getName())
-                    .executeUpdate().getResult();
+                    .executeUpdate().getKey(Integer.class);
             return newId;
         }
     }

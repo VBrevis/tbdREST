@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Sql2o sql2o = new Sql2o("jdbc:postgresql://127.0.0.1:5432/testspark","postgres","");
+        Sql2o sql2o = new Sql2o("jdbc:postgresql://127.0.0.1:5432/tbd","tbduser","tbdpass");
         DogSql2o dogSql2o = new DogSql2o(sql2o);
 
         get("/", (req, res) -> "{\"mensaje\":\"Corriendo\"}");
